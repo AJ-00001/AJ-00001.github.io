@@ -54,6 +54,10 @@ span:hover {
      transition: transform 0.3s ease-out;
 }
 
+.header {
+  text-align: center;
+}
+
 .bgchanger {
   text-align: center;
 }
