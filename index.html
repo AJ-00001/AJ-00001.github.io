@@ -18,36 +18,42 @@ const originalBody = document.body.innerHTML;
 
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
-    // build fake Canvas UI
+    // create fake Canvas layout
     document.body.innerHTML = `
-      <div id="fakeCanvas" style="font-family: Arial, sans-serif; height:100vh; display: flex;">
-        <nav style="width: 200px; background: #2c3e50; color: white; padding: 20px;">
-          <h2>Dashboard</h2>
-          <ul style="list-style: none; padding: 0;">
-            <li>Courses</li>
-            <li>Calendar</li>
-            <li>Inbox</li>
-            <li>Account</li>
-          </ul>
-        </nav>
-        <main style="flex:1; background: #ecf0f1; padding: 20px;">
-          <header style="background: white; padding: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-            <h1>Course Name</h1>
+      <div style="display:flex;height:100vh;font-family:Arial,sans-serif;">
+        <aside style="width:220px;background:#2c3e50;color:#fff;padding:20px;display:flex;flex-direction:column;gap:10px;">
+          <h2 style="margin:0;font-size:20px;">Dashboard</h2>
+          <nav>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+              <li>Courses</li>
+              <li>Calendar</li>
+              <li>Inbox</li>
+              <li>Account</li>
+              <li>Help</li>
+            </ul>
+          </nav>
+        </aside>
+        <main style="flex:1;background:#ecf0f1;display:flex;flex-direction:column;">
+          <header style="background:white;padding:15px;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+            <h1 style="margin:0;font-size:22px;">Canvas Dashboard</h1>
           </header>
-          <section style="margin-top: 20px; background: white; height: calc(100% - 60px); border: 1px solid #ccc;">
-            <p>Content would go here...</p>
+          <section style="flex:1;display:flex;align-items:center;justify-content:center;">
+            <div style="background:white;padding:30px;border-radius:10px;box-shadow:0 0 5px rgba(0,0,0,0.1);">
+              <p>This is your dashboard.</p>
+            </div>
           </section>
         </main>
       </div>
     `;
-    document.title = “Canvas — Dashboard”;
+    document.title = "Dashboard - Canvas";
   } else {
-    // restore your site
+    // restore your original page
     document.body.innerHTML = originalBody;
     document.title = originalTitle;
   }
 });
 </script>
+
 
 
       </div>
