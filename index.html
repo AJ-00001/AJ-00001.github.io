@@ -12,6 +12,38 @@
     <div class="requests"><a target="_blank" href="https://forms.gle/BiaAksqw4rSLGxie6"><button>Requests</button></a></div>
       <p>-------------------------------------------------------------------------------------------------------------------------------</p>
       <h2>WELCOME</h2>
+      <script>
+const docFavicon = "https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x16.png";
+const originalTitle = document.title;
+const originalBody = document.body.innerHTML;
+
+document.addEventListener("visibilitychange", function() {
+  let favicon = document.querySelector("link[rel='icon']");
+  if (!favicon) {
+    favicon = document.createElement("link");
+    favicon.rel = "icon";
+    document.head.appendChild(favicon);
+  }
+
+  if (document.hidden) {
+    // Switch to fake Google Docs mode
+    favicon.href = docFavicon;
+    document.body.innerHTML = `
+      <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <h1 style="font-weight: normal;">Untitled document - Google Docs</h1>
+        <div style="border: 1px solid #ddd; padding: 20px; height: 500px; background: white;"></div>
+      </div>
+    `;
+    document.title = "Untitled document - Google Docs";
+  } else {
+    // Restore original site
+    favicon.remove(); // removes the fake docs favicon (so it goes back to the browser default)
+    document.body.innerHTML = originalBody;
+    document.title = originalTitle;
+  }
+});
+</script>
+
       </div>
   </body>
 </html>
