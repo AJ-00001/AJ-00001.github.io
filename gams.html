@@ -14,6 +14,30 @@
     <div class="requests"><a target="_blank" href="https://forms.gle/BiaAksqw4rSLGxie6"><button>Requests</button></a></div>
     <p>-------------------------------------------------------------------------------------------------------------------------------</p>
     </div>
+    <script>
+const originalTitle = document.title;
+const canvasFavicon = "https://canvas.instructure.com/favicon.ico"; // Canvas favicon
+const elmoFavicon = "elmo.png"; // your favicon
+
+document.addEventListener("visibilitychange", () => {
+  let favicon = document.querySelector("link[rel='icon']");
+  if (!favicon) {
+    favicon = document.createElement("link");
+    favicon.rel = "icon";
+    document.head.appendChild(favicon);
+  }
+
+  if (document.hidden) {
+    // Switch to Canvas look
+    favicon.href = canvasFavicon;
+    document.title = "Dashboard";
+  } else {
+    // Switch back to Elmo favicon + original title
+    favicon.href = elmoFavicon;
+    document.title = originalTitle;
+  }
+});
+</script>
     <div class="main">
       <h2>Games</h2>
       <a target="_blank" href="/gams/flappybird.html"><button>Flappy Bird</button></a>
