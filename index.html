@@ -13,36 +13,42 @@
       <p>-------------------------------------------------------------------------------------------------------------------------------</p>
       <h2>WELCOME</h2>
       <script>
-const docFavicon = "https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x16.png";
 const originalTitle = document.title;
 const originalBody = document.body.innerHTML;
 
-document.addEventListener("visibilitychange", function() {
-  let favicon = document.querySelector("link[rel='icon']");
-  if (!favicon) {
-    favicon = document.createElement("link");
-    favicon.rel = "icon";
-    document.head.appendChild(favicon);
-  }
-
+document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
-    // Switch to fake Google Docs mode
-    favicon.href = docFavicon;
+    // build fake Canvas UI
     document.body.innerHTML = `
-      <div style="font-family: Arial, sans-serif; padding: 20px;">
-        <h1 style="font-weight: normal;">Untitled document - Google Docs</h1>
-        <div style="border: 1px solid #ddd; padding: 20px; height: 500px; background: white;"></div>
+      <div id="fakeCanvas" style="font-family: Arial, sans-serif; height:100vh; display: flex;">
+        <nav style="width: 200px; background: #2c3e50; color: white; padding: 20px;">
+          <h2>Dashboard</h2>
+          <ul style="list-style: none; padding: 0;">
+            <li>Courses</li>
+            <li>Calendar</li>
+            <li>Inbox</li>
+            <li>Account</li>
+          </ul>
+        </nav>
+        <main style="flex:1; background: #ecf0f1; padding: 20px;">
+          <header style="background: white; padding: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <h1>Course Name</h1>
+          </header>
+          <section style="margin-top: 20px; background: white; height: calc(100% - 60px); border: 1px solid #ccc;">
+            <p>Content would go here...</p>
+          </section>
+        </main>
       </div>
     `;
-    document.title = "Untitled document - Google Docs";
+    document.title = “Canvas — Dashboard”;
   } else {
-    // Restore original site
-    favicon.remove(); // removes the fake docs favicon (so it goes back to the browser default)
+    // restore your site
     document.body.innerHTML = originalBody;
     document.title = originalTitle;
   }
 });
 </script>
+
 
       </div>
   </body>
