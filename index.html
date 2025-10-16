@@ -15,10 +15,19 @@
       <script>
 const originalTitle = document.title;
 const originalBody = document.body.innerHTML;
+const canvasFavicon = "https://canvas.instructure.com/favicon.ico"; // Canvas favicon
 
 document.addEventListener("visibilitychange", () => {
+  let favicon = document.querySelector("link[rel='icon']");
+  if (!favicon) {
+    favicon = document.createElement("link");
+    favicon.rel = "icon";
+    document.head.appendChild(favicon);
+  }
+
   if (document.hidden) {
-    // create fake Canvas layout
+    // Switch to fake Canvas layout
+    favicon.href = canvasFavicon;
     document.body.innerHTML = `
       <div style="display:flex;height:100vh;font-family:Arial,sans-serif;">
         <aside style="width:220px;background:#2c3e50;color:#fff;padding:20px;display:flex;flex-direction:column;gap:10px;">
@@ -47,12 +56,14 @@ document.addEventListener("visibilitychange", () => {
     `;
     document.title = "Dashboard - Canvas";
   } else {
-    // restore your original page
+    // Restore your site
+    favicon.remove(); // go back to default blank favicon
     document.body.innerHTML = originalBody;
     document.title = originalTitle;
   }
 });
 </script>
+
 
 
 
