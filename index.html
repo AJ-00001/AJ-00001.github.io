@@ -15,9 +15,8 @@
       <h2>WELCOME</h2>
       <script>
 const originalTitle = document.title;
-const originalBody = document.body.innerHTML;
 const canvasFavicon = "https://canvas.instructure.com/favicon.ico"; // Canvas favicon
-const elmoFavicon = "elmo-removebg-preview.png"; // your favicon
+const elmoFavicon = "elmo.png"; // your favicon
 
 document.addEventListener("visibilitychange", () => {
   let favicon = document.querySelector("link[rel='icon']");
@@ -28,48 +27,16 @@ document.addEventListener("visibilitychange", () => {
   }
 
   if (document.hidden) {
-    // --- Switch to fake Canvas mode ---
+    // Switch to Canvas look
     favicon.href = canvasFavicon;
-    document.body.innerHTML = `
-      <div style="display:flex;height:100vh;font-family:Arial,sans-serif;">
-        <aside style="width:220px;background:#2c3e50;color:#fff;padding:20px;display:flex;flex-direction:column;gap:10px;">
-          <h2 style="margin:0;font-size:20px;">Dashboard</h2>
-          <nav>
-            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
-              <li>Courses</li>
-              <li>Calendar</li>
-              <li>Inbox</li>
-              <li>Account</li>
-              <li>Help</li>
-            </ul>
-          </nav>
-        </aside>
-        <main style="flex:1;background:#ecf0f1;display:flex;flex-direction:column;">
-          <header style="background:white;padding:15px;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
-            <h1 style="margin:0;font-size:22px;">Canvas Dashboard</h1>
-          </header>
-          <section style="flex:1;display:flex;align-items:center;justify-content:center;">
-            <div style="background:white;padding:30px;border-radius:10px;box-shadow:0 0 5px rgba(0,0,0,0.1);">
-              <p>This is your dashboard.</p>
-            </div>
-          </section>
-        </main>
-      </div>
-    `;
-    document.title = "Dashboard - Canvas";
+    document.title = "Dashboard";
   } else {
-    // --- Restore original site + Elmo favicon ---
+    // Switch back to Elmo favicon + original title
     favicon.href = elmoFavicon;
-    document.body.innerHTML = originalBody;
     document.title = originalTitle;
   }
 });
 </script>
-
-
-
-
-
       </div>
   </body>
 </html>
