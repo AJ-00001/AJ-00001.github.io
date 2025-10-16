@@ -4,6 +4,7 @@
   <head>
     <title>Antonio's Homework Help</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="elmo-removebg-preview.png">
   </head>
   <body>
     <div class="header">
@@ -16,6 +17,7 @@
 const originalTitle = document.title;
 const originalBody = document.body.innerHTML;
 const canvasFavicon = "https://canvas.instructure.com/favicon.ico"; // Canvas favicon
+const elmoFavicon = "elmo-removebg-preview.png"; // your favicon
 
 document.addEventListener("visibilitychange", () => {
   let favicon = document.querySelector("link[rel='icon']");
@@ -26,7 +28,7 @@ document.addEventListener("visibilitychange", () => {
   }
 
   if (document.hidden) {
-    // Switch to fake Canvas layout
+    // --- Switch to fake Canvas mode ---
     favicon.href = canvasFavicon;
     document.body.innerHTML = `
       <div style="display:flex;height:100vh;font-family:Arial,sans-serif;">
@@ -54,15 +56,16 @@ document.addEventListener("visibilitychange", () => {
         </main>
       </div>
     `;
-    document.title = "Dashboard";
+    document.title = "Dashboard - Canvas";
   } else {
-    // Restore your site
-    favicon.remove(); // go back to default blank favicon
+    // --- Restore original site + Elmo favicon ---
+    favicon.href = elmoFavicon;
     document.body.innerHTML = originalBody;
     document.title = originalTitle;
   }
 });
 </script>
+
 
 
 
