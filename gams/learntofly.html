@@ -1,2 +1,26 @@
 <title>Learn to Fly</title>
 <iframe src="https://nintendoboi2222.github.io/games/learn-to-fly/" width="100%" height="100%"></iframe>
+<script>
+const originalTitle = document.title;
+const canvasFavicon = "https://canvas.instructure.com/favicon.ico"; // Canvas favicon
+const elmoFavicon = "elmo.gif"; // your favicon
+
+document.addEventListener("visibilitychange", () => {
+  let favicon = document.querySelector("link[rel='icon']");
+  if (!favicon) {
+    favicon = document.createElement("link");
+    favicon.rel = "icon";
+    document.head.appendChild(favicon);
+  }
+
+  if (document.hidden) {
+    // Switch to Canvas look
+    favicon.href = canvasFavicon;
+    document.title = "Dashboard";
+  } else {
+    // Switch back to Elmo favicon + original title
+    favicon.href = elmoFavicon;
+    document.title = originalTitle;
+  }
+});
+</script>
